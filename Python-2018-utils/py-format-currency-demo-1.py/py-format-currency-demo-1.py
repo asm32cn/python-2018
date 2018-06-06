@@ -4,8 +4,6 @@
 # Python 2.7
 # py-format-currency-demo-1.py
 
-s = '321123456789.12345'
-
 def FormatCurrency(s):
 	r = s
 	try:
