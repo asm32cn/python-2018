@@ -49,4 +49,8 @@ strEncrypt:
 	sb-fduvdu-ghpr-1.sb (Sbwkrq实现fdhvdu凯撒加密算法)
 strDecrypt:
 	py-carsar-demo-1.py (Python实现caesar凯撒加密算法)
+
+Carsar加密算法是最简单的加密算法，原理是把一个字母在字母表中移动相
+应的位置，比如输入a，将其移动3位，经过Caesar加密后输出的d，位置可
+以循环移动，输入x,则输出a
 '''
