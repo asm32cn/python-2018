@@ -38,14 +38,50 @@ class Base64Utils():
 
 		return ''.join(byteCache)
 
+
+	def Base64Decode(self, s):
+
+		def initMap():
+			n, dict = 0, {}
+			for ch in self.strKey:
+				dict[ch] = n; n += 1;
+			return dict
+
+		chr1 = chr2 = chr3 = 0
+		enc1 = enc2 = enc3 = enc4 = 0
+		i, n, nCount = 0, 0, len(s)
+		_map = initMap()
+		byteCache = ['\0'] * (nCount / 4 * 3)
+		while i < nCount:
+			enc1 = _map[s[i]]; i += 1;
+			enc2 = _map[s[i]]; i += 1;
+			enc3 = _map[s[i]]; i += 1;
+			enc4 = _map[s[i]]; i += 1;
+
+			chr1 = (enc1 << 2) | (enc2>> 4);
+			chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+			chr3 = ((enc3 & 3) << 6) | enc4;
+			byteCache[n] = chr(chr1); n += 1;
+			if enc3 != 64:
+				byteCache[n] = chr(chr2); n += 1;
+			if enc4 != 64:
+				byteCache[n] = chr(chr3); n += 1;
+		# print ''.join(byteCache)
+		return ''.join(byteCache)
+
 def Main():
 	b64 = Base64Utils()
 	strData = "py-base64-demo-1.py\n程序中书写着所见所闻所感，编译着心中的万水千山。"
-	strSysEncrypt = b64.Base64Encode(strData)
-	strUserEncrypt = base64.b64encode(strData)
+	strSysEncrypt = base64.b64encode(strData)
+	strSysDecrypt = base64.b64decode(strSysEncrypt)
+	strUserEncrypt = b64.Base64Encode(strData)
+	strUserDecrypt = b64.Base64Decode(strUserEncrypt)
+
 	print 'strData:\n\t' + strData
 	print 'strSysEncrypt:\n\t' + strSysEncrypt
+	print 'strSysDecrypt:\n\t' + strSysDecrypt
 	print 'strUserEncrypt:\n\t' + strUserEncrypt
+	print 'strUserDecrypt:\n\t',strUserDecrypt
 
 if __name__ == '__main__':
 	Main()
