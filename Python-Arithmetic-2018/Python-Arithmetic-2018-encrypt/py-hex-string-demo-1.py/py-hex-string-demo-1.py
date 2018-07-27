@@ -28,7 +28,7 @@ class HexString():
 
 def Main():
 	hs = HexString()
-	strSource = 'c-base64-demo-1.c\n程序中书写着所见所闻所感，编译着心中的万水千山。'
+	strSource = 'py-base64-demo-1.py\n程序中书写着所见所闻所感，编译着心中的万水千山。'
 	strEncrypt = hs.HexStringEncode(strSource)
 	strDecrypt = hs.HexStringDecode(strEncrypt)
 	print 'strSource:\n\t%s\nstrEncrypt:\n\t%s\nstrDecrypt:\n\t%s' % (strSource, strEncrypt, strDecrypt)
